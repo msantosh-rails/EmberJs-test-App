@@ -1,0 +1,82 @@
+</br>
+
+<div class="well">
+
+<p id="notice"><%= notice %></p>
+<!--<p>
+  <b>Name:</b>
+  <%= @sample.pic_name %>
+</p>
+
+<p>-->
+
+<%= image_tag @sample.pic_url ,:style=>"width:500px;height:500px",:id=>"target"%>
+
+
+<!--<div id="data" class="well"></div>-->
+<!--<button id="show">Show Data</button>-->
+<!--<div class="clearfix"></div>-->
+</p>
+
+
+<%#= link_to 'Edit', edit_sample_path(@sample) ,:class=>"btn btn-primary" %>
+<%= link_to 'Back', samples_path ,:class=>"btn "%>
+
+</div>
+
+
+<script type="text/javascript">
+
+  jQuery(function($){
+
+
+    var textover_api;
+
+    // How easy is this??
+    $('#target').TextOver({}, function() {
+      textover_api = this;
+
+    });
+
+    $('#show').click(function () {
+      html = '';
+	alert(textover_api.getData()[0].text);
+      $.each(textover_api.getData(), function() {
+html += 'Text &raquo; ' + this.text + ' Left &raquo; ' + this.left + ' Top &raquo; ' + this.top + '<br />';
+
+      });
+
+      $('#data').html(html).show();
+    });
+
+    $('#target').mouseleave({},function(e) {
+    		e.preventDefault();
+		//alert("event");
+//		alert(textover_api.getData().reverse()[0].text);
+		var comment=textover_api.getData().reverse()[0].text;
+		var left=textover_api.getData().reverse()[0].left;		
+		var top=textover_api.getData().reverse()[0].top;
+		//var a =[left,top]		
+		$.ajax({
+			
+			url:'/update_pic',
+			data: { id:<%=@sample.id%> ,pic_name:comment, left:left, top:top },
+			dataType: 'html',
+				success: function(data) {
+					},
+				error: function(data) {
+					}
+		});		
+		
+		
+	});
+
+});
+
+</script>
+
+
+
+
+
+    

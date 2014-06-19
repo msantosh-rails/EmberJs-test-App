@@ -1,0 +1,23 @@
+<div>
+<%= simple_form_for @sample ,:html => { class: 'form-horizontal',:multipart => true} do |f| %>
+
+  <%= f.error_notification %>
+<fieldset >    
+	 <legend>Upload Image</legend>
+
+  <div class="form-inputs">
+    <%= f.input :picname %>
+    
+    <%= f.input :pic %>
+
+  </div>
+
+  </fieldset>
+
+  <div class="form-actions">
+    <%= f.submit  "Upload",:class=>"btn"%>
+    <%= link_to 'Back', samples_path ,:class=>"btn "%>
+  </div>
+<% end %>
+
+</div>

@@ -1,0 +1,24 @@
+<div >
+<h1 style="padding-left:250px">List of Uploaded Images</h1>
+<%= link_to 'Upload Image', new_sample_path ,:class=>"btn" %>
+<br/></br>
+<table id="users-table" class="table">
+<tr>
+    <th>Pic Name</th>
+    <th>Picture</th>
+    <th></th>
+    <th></th>
+
+<% @samples.each do |sample| %>
+  <tr>
+    <td><%= sample.picname %></td>
+    <td> <%= image_tag sample.pic_url ,:style=>"width:100px;height:100px"%></td>
+    <td><%= link_to 'Show', sample, :class=>"btn btn-primary btn-small"%></td>
+    <td><%= link_to 'Destroy', sample, method: :delete, data: { confirm: 'Are you sure?' },:class=>"btn btn-danger btn-small" %></td>
+  </tr>
+<% end %>
+
+
+</table>
+
+
