@@ -1,3 +1,4 @@
+require 'base64'
 class SamplesController < ApplicationController
 #respond_to :json
   # GET /samples
@@ -15,18 +16,15 @@ class SamplesController < ApplicationController
 
 
 def update_pic
-    
+     
     @sample = Sample.find(params[:id])
-    @sample.pic_name=params[:pic_name]
-    @sample.pic=@sample.pic
-    puts"-------------------------------------"
-#    puts params[:dimensions][0]
-#    puts params[:dimensions][1]
-    puts params.inspect
-    puts "---------------------------------"    
-    @sample.left=params[:left]
-    @sample.top=params[:top]
-    @sample.save
+   data = params[:data_url]
+
+image_data = Base64.decode64(data['data:image/jpg;base64,'.length .. -1])
+
+File.open("#{Rails.root}/public/#{@sample.pic}", 'wb') do |f|
+  f.write image_data
+end
 
 end
   # GET /samples/1

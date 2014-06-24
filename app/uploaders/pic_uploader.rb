@@ -25,20 +25,26 @@ def poster
  manipulate! do |source|
   txt = Magick::Draw.new
 #  txt.family
-  txt.pointsize = 64
+  txt.pointsize = 32
   txt.gravity = Magick::SouthGravity
   txt.stroke = "transparent"
   txt.fill="black"
   title = model.pic_name
   left=model.left
   top=model.top
-#  source = source.resize_to_fit(500, 500)#.border(10, 10, "black")
+  source = source.resize_to_fit(500, 500)#.border(10, 10, "black")
+
+#txt.fill_opacity(1)
+#txt.stroke('red')
+#txt.stroke_width(3)
+#txt.rectangle(465,202, 470,210)
 #  source.annotate(txt, 0, 0, top, left, title)
   if model.left && model.pic_name
   	source.annotate(txt, 0, 0, left, top, title)
   else
     	source.annotate(txt, 0, 0, 0, 40, " ")
   end
+#  source.rectangle(20,20,280,180)
 
 end
 end

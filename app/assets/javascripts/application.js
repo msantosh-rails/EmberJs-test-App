@@ -19,6 +19,7 @@
 //= require_self
 //= require ./emberjsapp
 //= require jquery.textover.min
+//= require html2canvas
 
 // for more details see: http://emberjs.com/guides/application/
 Emberjsapp = Ember.Application.create();
